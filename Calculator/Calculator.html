@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.calculator {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.display {
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+button {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ddd;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #ccc;
+}
+
+button.operator {
+  background-color: #ff9900;
+  color: white;
+}
+
+button.equal {
+  background-color: #00cc66;
+  color: white;
+}
+
+button.clear {
+  background-color: #ff0000;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<div class="calculator">
+  <div class="display" id="display"></div>
+  <div class="buttons">
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button class="operator" onclick="appendOperator('+')">+</button>
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button class="operator" onclick="appendOperator('-')">-</button>
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button class="operator" onclick="appendOperator('*')">*</button>
+    <button onclick="appendNumber('0')">0</button>
+    <button onclick="appendNumber('.')">.</button>
+    <button class="equal" onclick="calculate()">=</button>
+    <button class="operator" onclick="appendOperator('/')">/</button>
+    <button class="clear" onclick="clearDisplay()">C</button>
+  </div>
+</div>
+
+<script>
+let display = document.getElementById('display');
+let currentInput = '';
+let operator = '';
+
+function appendNumber(number) {
+  currentInput += number;
+  display.textContent = currentInput;
+}
+
+function appendOperator(op) {
+  operator = op;
+  currentInput += op;
+  display.textContent = currentInput;
+}
+
+function calculate() {
+  let result = eval(currentInput);
+  display.textContent = result;
+  currentInput = result;
+}
+
+function clearDisplay() {
+  currentInput = '';
+  operator = '';
+  display.textContent = '';
+}
+</script>
+
+</body>
+</html>
